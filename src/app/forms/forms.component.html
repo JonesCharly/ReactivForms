@@ -1,0 +1,31 @@
+<div class="formCtn">
+    <h2>CREATE YOUR MOVIE</h2>
+
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+
+        <label> Identifiant
+            <input type="text" formControlName="idMovie">
+        </label>
+
+        <label> Titre
+            <input type="text" formControlName="nameMovie">
+        </label>
+
+            <select formControlName="typeControl" value="type">
+                <option *ngFor="let type of types">{{type}} </option>
+            </select>
+     
+        <label> Année de sortie
+            <input type="number" formControlName="yearMovie">
+        </label>
+
+        <label> Fiche
+            <select>
+                <option  value="complete">Complète</option>
+                <option value="courte">Courte</option>
+            </select>
+        </label>
+
+        <button type="submit">Ajoutez</button>
+    </form>
+</div>
