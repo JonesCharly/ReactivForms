@@ -1,0 +1,88 @@
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    letter-spacing: .2em;
+}
+
+hr {
+    width: 200px;
+    margin-top: -1%;
+    margin-bottom: 5%;
+}
+
+input {
+    width: 240px;
+    height: 20px;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    border: solid 1px rgb(194, 192, 192);
+    background-color: rgb(247, 247, 247);
+}
+
+
+label{
+    font-family: Helvetica, sans-serif;
+    color: rgb(27, 110, 103);
+    font-weight: bold;
+}
+
+select {
+    width: 240px;
+    height: 23px;
+    margin: 12px;
+    margin: 2%;
+    padding-left: 1%;
+}
+
+option {
+    padding-left: 1%;
+}
+
+span {
+    width: 240px;
+    font-family: Helvetica, sans-serif;
+    font-size: 10px;
+    color: rgb(228, 81, 81);
+    font-weight: bold;
+    text-align: right;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+button {
+    border: none;
+    width: 160px;
+    height: 30px;
+    margin-top: 3%;
+    border-radius: 7px;
+    background-image: linear-gradient(rgb(27, 110, 103),rgb(110, 226, 226));
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1em;
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+button:focus, input:focus, select:focus {
+    outline: none;
+}

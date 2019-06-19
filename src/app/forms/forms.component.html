@@ -1,31 +1,49 @@
 <div class="formCtn">
-    <h2>CREATE YOUR MOVIE</h2>
-
+    
     <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        
+        <h2>CREATE YOUR MOVIE</h2>
 
-        <label> Identifiant
-            <input type="text" formControlName="idMovie">
-        </label>
+        <hr>
 
-        <label> Titre
-            <input type="text" formControlName="nameMovie">
-        </label>
+         <div formGroupName="idForm">
+
+                <label> Identifiant <br>
+                    <input type="text" formControlName="idMovie">
+                </label>
+    
+                <br>
+
+                <label> Titre <br>
+                    <input type="text" formControlName="nameMovie">
+                </label>
+                
+                <div>
+                    <span *ngIf="movieForm.touched && movieForm.controls.idForm.errors">L'un des deux champs 'Identifiant' ou 'Titre'<br> doit être renseigné</span>
+                </div>
+    
+        </div> 
 
             <select formControlName="typeControl" value="type">
                 <option *ngFor="let type of types">{{type}} </option>
             </select>
      
-        <label> Année de sortie
+        <label> Année de sortie <br>
             <input type="number" formControlName="yearMovie">
         </label>
 
-        <label> Fiche
-            <select>
-                <option  value="complete">Complète</option>
-                <option value="courte">Courte</option>
+        <div>
+            <span *ngIf="movieForm.touched && movieForm.get('yearMovie').errors">{{movieForm.get('yearMovie').errors.invalidDate}}</span>
+        </div>
+        
+        <br>
+        <label> Fiche <br>
+            <select formControlName="ficheControl">
+                    <option  value="complete">Complète</option>
+                    <option value="courte">Courte</option>
             </select>
         </label>
 
-        <button type="submit">Ajoutez</button>
+        <button type="submit">SUBMIT</button>
     </form>
 </div>

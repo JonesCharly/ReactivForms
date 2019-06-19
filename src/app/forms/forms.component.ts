@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { rangeDateValidator } from './validRequired';
+
 
 @Component({
   selector: 'app-forms',
@@ -9,27 +11,75 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 export class FormsComponent implements OnInit {
 
   movieForm: FormGroup;
+  
+  
 
 
   types= ['serie','episode','film']
 
-  constructor( private fb: FormBuilder ) {}
+  constructor(
+    private fb: FormBuilder) {}
 
+  // idMovie: FormControl;
+  // nameMovie: FormControl;
+  // yearMovie: FormControl;
+  ficheControl: FormControl;
 
 
 
   ngOnInit() {
 
     this.movieForm = this.fb.group ({
-        idMovie: ['', Validators.required],
-        nameMovie: ['', Validators.required],
-        yearMovie: ['', Validators.required],
-        typeControl: ['serie', Validators.required],
+      idForm: this.fb.group({
+        idMovie: [''],
+        nameMovie: ['']
+      },
+      {
+        validator: this.isRequiredValidator('idMovie','nameMovie')
+      }
+      ),
+
+
+      yearMovie: [ , [Validators.required, rangeDateValidator]],
+      typeControl: ['serie', Validators.required],
+      ficheControl: ['courte', Validators.required]
+
     })
+
   }
+
 
   onSubmit(){
+    console.log(this.movieForm);
+    
+    this.movieForm.patchValue({
+      ficheControl: 'courte' // Can set specific or all properties
+    })
+    if (this.movieForm.valid) {
+    const result = {...this.movieForm.value }
+    console.log(result)
+  } 
 
-    console.log(this.movieForm.value)
-  }
 }
+
+  isRequiredValidator(idMovie, nameMovie): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      // Get first control value
+      const value1 = control.get(idMovie).value;
+      // Get second control value
+      const value2 = control.get(nameMovie).value;
+  
+      if (value1=== '' && value2 === '') {
+        return { 
+          isRequired: true
+        }
+      } else {
+        return ;
+      }
+    };
+  }
+  
+
+}
+
+// ||
